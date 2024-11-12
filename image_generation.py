@@ -141,7 +141,7 @@ def create_and_save_png_by_csv(filename, result_filename):
     FL_1 = gaussian_filter(FL_1, sigma=7) if levels_fl is not None else None
 
     # Созданем фигуру, устанавливая размер полотна с длиной и шириной 5 дюймов
-    plt.figure(figsize=(4, 5))
+    plt.figure(figsize=(5, 5))
 
     # Проверка и создание масок пересечений областей при помощи функции create_overlap_mask()
     mask_afm_co = create_overlap_mask(AFM_1, CO_1) if AFM_1 is not None and CO_1 is not None else None
