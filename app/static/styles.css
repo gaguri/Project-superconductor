@@ -1,0 +1,86 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --bg-color: #ecf0f1;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-color);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.upload-container {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.preview-container {
+    width: 100%;
+    height: 300px;
+    border: 2px dashed var(--accent-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.preview-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.parameters {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.parameter-card {
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--accent-color);
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.upload-icon {
+    width: 64px;
+    height: 64px;
+    fill: var(--accent-color);
+}
