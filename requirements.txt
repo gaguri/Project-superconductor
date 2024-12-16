@@ -1,0 +1,4 @@
+fastapi[all]
+Pillow
+tf-nightly
+numpy
