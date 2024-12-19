@@ -12,7 +12,7 @@ def process_file(names):
 
 if __name__ == '__main__':
     pool_size = 3
-    directory = r'/root/Chemistry-main/Data'
+    directory = r'C:\Users\Egor\Desktop\study\project\cube4-uniform-part1'
     result_directory = os.path.join(directory, 'result')
     regex = re.compile('.*.csv')
 

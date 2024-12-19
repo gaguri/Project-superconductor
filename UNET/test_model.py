@@ -40,7 +40,7 @@ def print_mape_parameters(df, column_name):
 
 # Инициализация модели
 print('Загрузка модели')
-model = keras.models.load_model('unet_model.keras')
+model = keras.models.load_model('best_model.h5')
 
 test_params, test_images, test_paths = get_test_dataset(dataset_directory)
 predicted_params = []

@@ -7,7 +7,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import keras
 import uvicorn
-from keras_preprocessing.image import load_img, img_to_array
+from keras_preprocessing.image import img_to_array
 
 app = FastAPI()
 templates = Jinja2Templates(directory='templates')
@@ -20,14 +20,14 @@ async def root(request: Request):
 
 @app.post('/calculate-parameters')
 async def calculate_parameters(file: UploadFile):
-    model = keras.models.load_model('../UNET/unet_model.keras')
+    model = keras.models.load_model('../UNET/best_model.h5')
     content = await file.read()
     image = Image.open(io.BytesIO(content))
     image = image.resize((128, 128))
-    image.save('./temp/temp_file.png')
-    np_image = img_to_array(image) / 255.0
+    np_image = img_to_array(image, data_format = "channels_first") / 255.0
     predicted_params = model.predict(np.array([np_image])).tolist()[0]
     print(predicted_params)
+    print(file.filename)
     return {'params': {
         'D': predicted_params[0],
         'V': predicted_params[1],

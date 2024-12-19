@@ -3,7 +3,6 @@ import os.path
 import random
 import numpy as np
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
-
 from PIL import Image
 
 
@@ -60,7 +59,7 @@ def create_and_save_dataset(csv_directory_name, output_directory):
 
 def load_image(image_path, target_size=(128, 128)):
     img = load_img(image_path, target_size=target_size)
-    return img_to_array(img) / 255.0
+    return img_to_array(img, data_format = "channels_first") / 255.0
 
 
 def get_train_dataset(path):
