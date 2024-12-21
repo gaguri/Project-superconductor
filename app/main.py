@@ -1,12 +1,10 @@
 import io
-
 import numpy as np
 from PIL import Image
 from fastapi import Request, FastAPI, UploadFile
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import keras
-import uvicorn
 from keras_preprocessing.image import img_to_array
 
 app = FastAPI()
@@ -37,6 +35,3 @@ async def calculate_parameters(file: UploadFile):
 
 
 app.mount('/static', StaticFiles(directory='static'), 'static')
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=5049)
