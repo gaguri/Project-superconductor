@@ -1,4 +1,6 @@
 import io
+import os
+
 import numpy as np
 from PIL import Image
 from fastapi import Request, FastAPI, UploadFile
@@ -18,7 +20,10 @@ async def root(request: Request):
 
 @app.post('/calculate-parameters')
 async def calculate_parameters(file: UploadFile):
-    model = keras.models.load_model('../UNET/best_model.h5')
+    path = os.getcwd()
+    parent_dir = os.path.abspath(os.path.join(path, os.pardir))
+
+    model = keras.models.load_model(os.path.join(parent_dir, 'UNET', 'best_model.h5'))
     content = await file.read()
     image = Image.open(io.BytesIO(content))
     image = image.resize((128, 128))
