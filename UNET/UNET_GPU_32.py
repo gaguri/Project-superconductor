@@ -58,7 +58,7 @@ model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=initial_learning_
 callbacks = [
     EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
     ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=1e-6),
-    ModelCheckpoint("best_model.h5", save_best_only=True)
+    ModelCheckpoint("best_model.h5", save_best_only=True, save_weights_only=True)
 ]
 
 history = model.fit(
