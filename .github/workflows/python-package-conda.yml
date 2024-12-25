@@ -18,8 +18,8 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: Create and install conda environment
     - uses: conda-incubator/setup-miniconda@v2
+    - name: Create and install conda environment
       with:
         miniconda-version: "latest"
         channels: bioconda, conda-forge, defaults
