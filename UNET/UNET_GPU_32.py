@@ -4,6 +4,7 @@ from tensorflow.keras import regularizers
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 
 from UNET.dataset_common_functions import get_train_dataset, get_validation_dataset
+from UNET.model_common_functions import unet_full_model
 
 # Параметры
 batch_size = 8
@@ -36,20 +37,6 @@ val_dataset = create_dataset(val_images, val_params, batch_size=batch_size, shuf
 
 
 # Оптимизированная модель
-def unet_full_model(input_image_shape=(3, 128, 128)):
-    image_input = tf.keras.layers.Input(shape=input_image_shape, name="image")
-    c1 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu', padding='same', data_format="channels_first")(image_input)
-    p1 = tf.keras.layers.MaxPooling2D((2, 2), data_format="channels_first")(c1)
-    c2 = tf.keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same', data_format="channels_first")(p1)
-    p2 = tf.keras.layers.MaxPooling2D((2, 2), data_format="channels_first")(c2)
-    c3 = tf.keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same', data_format="channels_first")(p2)
-    p3 = tf.keras.layers.MaxPooling2D((2, 2), data_format="channels_first")(c3)
-    bottleneck = tf.keras.layers.Conv2D(256, (3, 3), activation='relu', padding='same', data_format="channels_first")(p3)
-    flatten = tf.keras.layers.Flatten()(bottleneck)
-    dense1 = tf.keras.layers.Dense(128, activation='relu')(flatten)
-    dense2 = tf.keras.layers.Dense(64, activation='relu')(dense1)
-    output = tf.keras.layers.Dense(4, activation='linear', name="output")(dense2)
-    return tf.keras.models.Model(inputs=image_input, outputs=output)
 
 model = unet_full_model(input_image_shape=(3, 128, 128))
 model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=initial_learning_rate), loss='mse', metrics=['mae'])

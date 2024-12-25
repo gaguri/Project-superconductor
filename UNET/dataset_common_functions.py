@@ -5,6 +5,14 @@ import numpy as np
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from PIL import Image
 
+def get_parameters_from_filename(filename):
+    parts = filename.split('_')
+    D = float(parts[1][1:])
+    V = float(parts[2][1:])
+    tb = float(parts[3][2:])
+    tp = float(parts[4][2:])
+    return D, V, tb, tp
+
 
 def get_params_and_images(csv_directory_name, resulted_path, image_size=None):
     images_directory = os.path.join(csv_directory_name, "result")
@@ -15,11 +23,7 @@ def get_params_and_images(csv_directory_name, resulted_path, image_size=None):
     for filename in csvs_filenames:
         full_path = os.path.join(csv_directory_name, filename)
         without_extension = filename[:-4]
-        parts = without_extension.split('_')
-        D = float(parts[1][1:])
-        V = float(parts[2][1:])
-        tb = float(parts[3][2:])
-        tp = float(parts[4][2:])
+        D, V, tb, tp = get_parameters_from_filename(without_extension)
         png_filename = f'{without_extension}.png'
         image_full_path = os.path.join(images_directory, png_filename)
         img = Image.open(image_full_path)
