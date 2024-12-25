@@ -21,6 +21,7 @@ jobs:
     - name: Create and install conda environment
       run: |
         conda create -n testing_environment python=3.9.20
+        conda init
         conda activate testing_environment
         pip install -r requirements.txt
     - name: Lint with flake8
