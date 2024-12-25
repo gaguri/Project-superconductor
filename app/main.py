@@ -7,7 +7,6 @@ from PIL import Image
 from fastapi import Request, FastAPI, UploadFile
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-import keras
 from keras_preprocessing.image import img_to_array
 
 app = FastAPI()
